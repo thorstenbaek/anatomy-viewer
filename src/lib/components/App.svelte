@@ -3,6 +3,15 @@
   import Scene from './Scene.svelte'
 </script>
 
-<Canvas>
-  <Scene />
-</Canvas>
+<div>
+  <Canvas>
+    <Scene />
+  </Canvas>
+</div>
+
+<style>
+  div {
+    height: 100%;
+    background-color: rgb(255 255 255 / 0.9);
+  }
+</style>
