@@ -9,12 +9,12 @@ Command: npx @threlte/gltf@2.0.3 C:\Users\tst\source\spike\anatomy-viewer\static
   import { T, type Props, type Events, type Slots, forwardEventHandlers } from '@threlte/core'
   import { useGltf } from '@threlte/extras'
 
-  type $$Props = Props<THREE.Group>
+  //type $$Props = Props<THREE.Group>
   type $$Events = Events<THREE.Group>
   type $$Slots = Slots<THREE.Group> & { fallback: {}; error: { error: any } }
 
   export const ref = new Group()
-
+  
   type GLTFResult = {
     nodes: {
       Body1: THREE.Mesh
@@ -33,6 +33,7 @@ Command: npx @threlte/gltf@2.0.3 C:\Users\tst\source\spike\anatomy-viewer\static
   }
 
   const gltf = useGltf<GLTFResult>('/models/MaleCharBaseMesh.glb')
+  gltf.then(test => {console.log(test)});
 
   const component = forwardEventHandlers()
 </script>
@@ -47,7 +48,9 @@ Command: npx @threlte/gltf@2.0.3 C:\Users\tst\source\spike\anatomy-viewer\static
       <T.Mesh geometry={gltf.nodes.Body1_2.geometry} material={gltf.materials.Eyel} />
     </T.Group> -->
     <T.Group position={[0, 0, 0]}>
-      <T.Mesh geometry={gltf.nodes.Body1003.geometry} material={gltf.materials.Char_Mlp} />
+      <T.Mesh geometry={gltf.nodes.Body1003.geometry} material={gltf.materials.Char_Mlp}>
+        <T.MeshStandardMaterial color="#cba590" />
+      </T.Mesh>
       <T.Mesh geometry={gltf.nodes.Body1003_1.geometry} material={gltf.materials.Eye} />
       <T.Mesh geometry={gltf.nodes.Body1003_2.geometry} material={gltf.materials.Eyel} />
     </T.Group>

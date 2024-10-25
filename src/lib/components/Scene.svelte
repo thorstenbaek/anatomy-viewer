@@ -1,7 +1,12 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import { ContactShadows, Float, Grid, OrbitControls } from '@threlte/extras'
+  import { ContactShadows, Float, Grid, OrbitControls, interactivity } from '@threlte/extras'
   import MaleCharBaseMesh from './models/MaleCharBaseMesh.svelte';
+  import { spring } from 'svelte/motion'
+
+  interactivity();
+  let color = "white";
+  let scale = spring(1);
 </script>
 
 <T.PerspectiveCamera
@@ -40,7 +45,9 @@
   floatIntensity={0.8}
   floatingRange={[0, 0]}
 >
-  <MaleCharBaseMesh/>
+  <MaleCharBaseMesh {color} scale={$scale}
+    on:pointerenter={()=>{scale.set(1.001)}}
+    on:pointerleave={()=>{scale.set(1.0)}}/>
 </Float>
 
 
