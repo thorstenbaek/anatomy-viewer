@@ -1,17 +1,13 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import { ContactShadows, Float, Grid, OrbitControls, interactivity } from '@threlte/extras'
-  import MaleCharBaseMesh from './models/MaleCharBaseMesh.svelte';
-  import { spring } from 'svelte/motion'
+  import { ContactShadows, Float, Grid, OrbitControls, interactivity, useGltf} from '@threlte/extras'
 
   interactivity();
-  let color = "white";
-  let scale = spring(1);
 </script>
 
 <T.PerspectiveCamera
   makeDefault
-  position={[0, 1, 8]}
+  position={[-4, 4, 8]}
   target={[0, 1, 0]}
   fov={15}
 >
@@ -19,7 +15,7 @@
     autoRotate
     enableZoom={true}
     enableDamping
-    autoRotateSpeed={0.5}
+    autoRotateSpeed={0}
     target={[0, 1, 0]}
   />
 </T.PerspectiveCamera>
@@ -34,21 +30,26 @@
 />
 <T.AmbientLight intensity={0.8} />
 
-<ContactShadows
+<!-- <ContactShadows
   scale={10}
   blur={2}
   far={2.5}
-  opacity={0.5}
-/>
+  opacity={0.5} /> -->
 
-<Float
-  floatIntensity={0.8}
-  floatingRange={[0, 0]}
->
-  <MaleCharBaseMesh {color} scale={$scale}
-    on:pointerenter={()=>{scale.set(1.001)}}
-    on:pointerleave={()=>{scale.set(1.0)}}/>
-</Float>
+  {#await useGltf('/models/MaleCharBaseMesh.glb')}  
+    <slot name="fallback" />
+  {:then gltf}  
+    <!-- <T is={gltf.scene.children[1]} position={[0, 0, 0]}/> -->
 
+    <T.Group position={[0, 0, 0]}>
+      <T.Mesh geometry={gltf.nodes.Body1003.geometry} material={gltf.materials.Char_Mlp}>
+      </T.Mesh>
+      <T.Mesh geometry={gltf.nodes.Body1003_1.geometry} material={gltf.materials.Eye} />
+      <T.Mesh geometry={gltf.nodes.Body1003_2.geometry} material={gltf.materials.Eyel} />
+    </T.Group>
+
+  {:catch error}    
+    <slot name="error" />
+  {/await}
 
 
