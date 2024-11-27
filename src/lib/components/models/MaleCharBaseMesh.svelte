@@ -8,6 +8,7 @@ Command: npx @threlte/gltf@2.0.3 C:\Users\tst\source\spike\anatomy-viewer\static
   import { Group } from 'three'
   import { T, type Props, type Events, type Slots, forwardEventHandlers } from '@threlte/core'
   import { useGltf } from '@threlte/extras'
+  import {parts} from "./parts.json";
 
   type $$Props = Props<THREE.Group>
   type $$Events = Events<THREE.Group>
