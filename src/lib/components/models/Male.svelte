@@ -24,8 +24,6 @@
   }
   const map2 = new CanvasTexture(inMemoryCanvas);*/
 
-  export let canvas;
-
   /*var inMemoryCanvas = document.createElement('canvas');
   inMemoryCanvas.height = 2048;
   inMemoryCanvas.width = 2048;
@@ -46,12 +44,10 @@
     ctx?.fillRect(400, 1255, 400, 793);
     ctx.fillStyle = 'red';
     ctx?.fillRect(0, 1355, 400, 693);
-
     
-    //grid.render(ctx);    
+    grid.render(ctx);    
   }
-  //const map2 = new CanvasTexture(inMemoryCanvas);
-  //const map2 = new CanvasTexture($textureStore);
+
 
   let manPromise = useGltf('/models/MaleCharBaseMesh.glb');
 

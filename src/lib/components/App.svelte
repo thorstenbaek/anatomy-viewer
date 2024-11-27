@@ -21,12 +21,12 @@
  .column {
     float: left;    
     width: 1024px;
-    height: 2048px;
+    height: 1024px;
   }
 
   .left {
-    height: 2048px;
-    width: 2048px;
+    height: 1024px;
+    width: 1024px;
   }
 
   /* Clear floats after the columns */

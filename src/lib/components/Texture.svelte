@@ -1,21 +1,22 @@
 <script lang="ts">
     import {onMount} from "svelte";
     import {textureStore} from "../../stores/textureStore";
+    import type Rectangle from "../types/rectangle";
 
-    const heightPx = "2048px";
-    const widthPx = "2048px";
-    const height = 2048;
-    const width = 2048;
+    const heightPx = "1024px";
+    const widthPx = "1024px";
+    const height = 1024;
+    const width = 1024;
 
-    let drawing;
-    let drawingCtx;
+    let drawing: HTMLCanvasElement;
+    let drawingCtx: CanvasRenderingContext2D | null;
 
-    let canvas;
-    let textureCtx;
+    let canvas: HTMLCanvasElement;;
+    let textureCtx: CanvasRenderingContext2D | null;
     
 
     let isDrawing = false;
-    let rectangles = [];
+    let rectangles: Rectangle[] = [];
     let startX = 0;
     let startY = 0;
     let currentRect = { x: 0, y: 0, width: 0, height: 0 };
@@ -24,8 +25,13 @@
         drawingCtx = drawing.getContext('2d');
         
         textureCtx = canvas.getContext('2d');
+        
+        if (textureCtx == null) {
+            return;
+        }
+        
         textureCtx.fillStyle = "lightBlue";
-        textureCtx.fillRect(0, 0, 2048, 2048);
+        textureCtx.fillRect(0, 0, 1024, 1024);
         textureCtx.lineWidth = 1;
         textureCtx.strokeStyle = "black";
         textureCtx.fillStyle = "red";
@@ -33,9 +39,13 @@
     })
 
     function refresh() {
-        textureCtx.clearRect(0, 0, 2048, 2048);
+        if (textureCtx == null) {
+            return;
+        }
+        
+        textureCtx.clearRect(0, 0, 1024, 1024);
         textureCtx.fillStyle = "lightBlue";
-        textureCtx.fillRect(0, 0, 2048, 2048);
+        textureCtx.fillRect(0, 0, 1024, 1024);
 
         textureCtx.fillStyle = "red";
         textureCtx.strokeStyle = "black";
@@ -43,50 +53,67 @@
         textureCtx.lineWidth = 1;
         
         rectangles.map(r => {
-            textureCtx.fillRect(r.x, r.y, r.width, r.height);
+            textureCtx?.fillRect(r.x, r.y, r.width, r.height);
         });
 
         textureCtx.stroke();
         textureCtx.closePath();
 
         $textureStore = canvas;
-      
     }
 
-    function startDrawing(event) {
+    function startDrawing(event: MouseEvent) {
         
-        const rect = event.target.getBoundingClientRect();
+        if (event.target == null)
+        {
+            return;
+        }
+
+        const element = event.target as Element;
+        const rect = element.getBoundingClientRect();
+
         startX = event.clientX - rect.left;
         startY = event.clientY - rect.top;
         isDrawing = true;
         currentRect = { x: startX, y: startY, width: 0, height: 0 };
     }
 
-    function stopDrawing(event) {
+    function stopDrawing(event: MouseEvent) {
         if (isDrawing) {
             rectangles.push({ ...currentRect });
             currentRect = { x: 0, y: 0, width: 0, height: 0 };
             isDrawing = false;
-
-            drawingCtx.clearRect(0, 0, 2048, 2048);
+            
+            drawingCtx?.clearRect(0, 0, 1024, 1024);
             refresh();
         }
         
     }
 
-    function draw(event) {        
+    function draw(event: MouseEvent) {        
         if (!isDrawing) {
             return;
         }
 
-        const rect = event.target.getBoundingClientRect();
+        if (event.target == null)
+        {
+            return;
+        }
+
+        const element = event.target as Element;
+        const rect = element.getBoundingClientRect();
+
         const mouseX = event.clientX - rect.left;
         const mouseY = event.clientY - rect.top;
 
         currentRect.width = mouseX - startX;
         currentRect.height = mouseY - startY;
         
-        drawingCtx.clearRect(0, 0, 2048, 2048);
+        if (drawingCtx == null) {
+            return;
+        }
+
+        drawingCtx.clearRect(0, 0, 1024, 1024);
         drawingCtx.beginPath();
         drawingCtx.rect(currentRect.x, currentRect.y, currentRect.width, currentRect.height);
         drawingCtx.closePath();
