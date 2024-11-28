@@ -3,10 +3,6 @@
   import Body from "./models/Body.svelte";
   import { ContactShadows, Float, Grid, OrbitControls, interactivity, useGltf, useTexture} from '@threlte/extras'
   import { Texture, RepeatWrapping, MirroredRepeatWrapping, CanvasTexture} from "three";  
-  
-  
-
-  
 </script>
 
 <T.PerspectiveCamera

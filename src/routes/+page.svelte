@@ -9,13 +9,6 @@
 <style>
   :global(body) {
     margin: 0;
-    transform: scale(1.0);
-  }
-  
-
-  div {
-    width: 100vw;
-    height: 100vh;
-    background: white;
+    background: #eeeeee;
   }
 </style>
