@@ -10,7 +10,7 @@ export default class TextureGrid {
     }
 
     render(ctx: CanvasRenderingContext2D, ): void {
-        ctx.strokeStyle = '#000000';
+        ctx.strokeStyle = '#888888';
         ctx.lineWidth = 1;
         for(let x = 0; x < this.width; x += this.width / this.count) {
             ctx?.moveTo(x, 0);

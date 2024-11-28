@@ -1,6 +1,6 @@
 <script lang="ts">
   import { T } from '@threlte/core'
-  import Male from "./models/Male.svelte";
+  import Body from "./models/Body.svelte";
   import { ContactShadows, Float, Grid, OrbitControls, interactivity, useGltf, useTexture} from '@threlte/extras'
   import { Texture, RepeatWrapping, MirroredRepeatWrapping, CanvasTexture} from "three";  
   
@@ -11,7 +11,7 @@
 
 <T.PerspectiveCamera
   makeDefault
-  position={[0, 0, 4]}
+  position={[0, 0, 8]}
   target={[0, 0, 0]}
   fov={15}
 >
@@ -35,7 +35,7 @@
 
 <T.AmbientLight intensity={0.8} />
 
-<Male/>
+<Body/>
 
 
 

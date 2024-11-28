@@ -3,4 +3,5 @@ export default interface Rectangle {
     y: number;
     height: number;
     width: number;
+    color: string;
 }
