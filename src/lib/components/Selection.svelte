@@ -1,9 +1,10 @@
 <script lang="ts">
-     import {selectionStore} from "../../stores/stores";
+     import {selectionStore, pointerUvPosition} from "../../stores/stores";
 </script>
 
 <div class="selection">
-    {$selectionStore}
+    <!-- {$selectionStore} -->
+    {$pointerUvPosition.x}, {$pointerUvPosition.y}
 </div>
 
 <style>
