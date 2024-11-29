@@ -1,6 +1,0 @@
-{
-   "parts": [
-        {"name": "left ear", "color": "red", "left": 1928, "top": 0, "width": 148, "height": 178},
-        {"name": "right ear", "color": "green", "left": 1928, "top": 178, "width": 148, "height": 178}
-    ]
-}

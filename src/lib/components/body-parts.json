@@ -1,0 +1,13 @@
+{
+   "parts": [
+        {"name": "left ear", "color": "white", "left": 1928, "top": 0, "width": 148, "height": 178},
+        {"name": "right ear", "color": "white", "left": 1928, "top": 178, "width": 148, "height": 178},
+        {"name": "torso front", "color": "white", "left": 1404, "top": 0, "width": 524, "height": 812},
+        {"name": "torso back", "color": "white", "left": 1404, "top": 812, "width": 448, "height": 842},
+        {"name": "left arm", "color": "white", "left": 400, "top": 1255, "width": 451, "height": 793},
+        {"name": "right arm", "color": "white", "left": 0, "top": 1255, "width": 400, "height": 693},
+        {"name": "head", "color": "white", "left": 0, "top": 0, "width": 850, "height":1294},
+        {"name": "right leg", "color": "white", "left": 850, "top": 0, "width": 556, "height":888},
+        {"name": "left leg", "color": "white", "left": 850, "top": 888, "width": 556, "height":892}
+    ]
+}

@@ -1,17 +1,17 @@
 <script lang="ts">
   import { Canvas } from '@threlte/core'
   import Scene from './Scene.svelte'
+  import Selection from './Selection.svelte';
 </script>
-
-<div>
+<div class="scene">
   <Canvas>
     <Scene />
   </Canvas>
 </div>
+<Selection/>
 
 <style>
-  div {
-    height: 100%;
-    background-color: rgb(255 255 255 / 0.9);
+  .scene {
+    height: 500px;
   }
 </style>
