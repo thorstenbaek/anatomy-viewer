@@ -1,8 +1,8 @@
 <script lang="ts">
   import { T } from '@threlte/core'
+  import * as THREE from 'three';
   import Body from "./models/Body.svelte";
-  import { ContactShadows, Float, Grid, OrbitControls, interactivity, useGltf, useTexture} from '@threlte/extras'
-  import { Texture, RepeatWrapping, MirroredRepeatWrapping, CanvasTexture} from "three";  
+  import { OrbitControls} from '@threlte/extras'  
 </script>
 
 <T.PerspectiveCamera
@@ -11,13 +11,15 @@
   target={[0, 0, 0]}
   fov={15}
 >
-  <OrbitControls
-    autoRotate
-    enableZoom={true}
-    enableDamping
+  <OrbitControls 
+    autoRotate={true}
     autoRotateSpeed={0}
-    target={[0, 1, 0]}
+    enableZoom={true}
+    enablePan={true}   
+    target={[0, 1, 0]}    
+    mouseButtons={{RIGHT:THREE.MOUSE.ROTATE, MIDDLE:THREE.MOUSE.PAN}}    
   />
+
 </T.PerspectiveCamera>
 
 <T.DirectionalLight
@@ -33,13 +35,6 @@
 
 <Body/>
 
-
-
-<!-- <ContactShadows
-  scale={10}
-  blur={2}
-  far={2.5}
-  opacity={0.5} /> -->
 
   
 
