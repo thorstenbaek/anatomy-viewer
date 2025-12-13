@@ -6,20 +6,20 @@
     export let mesh: Mesh;
     export let normalMap: CanvasTexture ;
     
-    let color: string = "#cccccc";
-    const selectionColor: string = "#aa6666";
-    let isSelected: boolean = false;
+    const bodyColor: string = "#ffc0b3";
+    const selectionColor: string = "#fe7358";
+    const hoverColor: string = "#fff2eb";
+    
+    let color: string = bodyColor;
 
     function pointerup(e: any) {
         if (e.nativeEvent.button == 0) {
-            isSelected = !isSelected;
-            if (isSelected) {
-                $selectionStore = [...$selectionStore, e.object.name]
+            if ($selectionStore == e.object.name)
+            {
+                $selectionStore = null;
             }
             else {
-                let index = $selectionStore.findIndex(x => x == e.object.name);
-                $selectionStore.splice(index, 1);
-                $selectionStore = $selectionStore;
+                $selectionStore = e.object.name;
             }
         }
 
@@ -27,12 +27,13 @@
     }
     
     function pointerEnter(e:any) {
-        color = "#ffffff";
+        color = hoverColor;
         e.stopPropagation();
     }
 
     function pointerLeave(e:any) {
-        color = "#bbbbbb";
+        color = bodyColor;
+        e.stopPropagation();
     }
 </script>
 
@@ -41,6 +42,6 @@
     on:pointerleave={pointerLeave}
     on:pointerup={pointerup}>
     
-    <T.MeshStandardMaterial {normalMap} color={isSelected ? selectionColor : color}/>
+    <T.MeshStandardMaterial {normalMap} color={$selectionStore == mesh.name ? selectionColor : color}/>
   </T.Mesh>    
 

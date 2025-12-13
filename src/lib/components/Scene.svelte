@@ -1,8 +1,9 @@
 <script lang="ts">
   import { T } from '@threlte/core'
   import Body from "./models/Body.svelte";
+  import UnclickableMan from "./models/UnclickableMan.svelte";
   import { ContactShadows, Float, Grid, OrbitControls, interactivity, useGltf, useTexture} from '@threlte/extras'
-  import { Texture, RepeatWrapping, MirroredRepeatWrapping, CanvasTexture} from "three";  
+  import { Texture, RepeatWrapping, MirroredRepeatWrapping, CanvasTexture} from "three";
 </script>
 
 <T.PerspectiveCamera
@@ -16,6 +17,7 @@
     enableZoom={true}
     enableDamping
     autoRotateSpeed={0}
+    rotateSpeed={1}
     target={[0, 1, 0]}
   />
 </T.PerspectiveCamera>
@@ -31,8 +33,9 @@
 
 <T.AmbientLight intensity={0.8} />
 
-<Body/>
+<UnclickableMan/>
 
+<Body/>
 
 
 <!-- <ContactShadows
